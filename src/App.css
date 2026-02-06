@@ -1,0 +1,488 @@
+/* App.css */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --neon-blue: #50c5ff;
+    /* Softer Blue */
+    --neon-pink: #ff70c5;
+    /* Softer Pink */
+    --bg-dark: #0a0a12;
+    --glass-bg: rgba(20, 20, 30, 0.5);
+    /* More transparent/softer glass */
+    --text-main: #e0e0e0;
+}
+
+body {
+    margin: 0;
+    background-color: var(--bg-dark);
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    padding: 0;
+    /* Remove padding to fill screen */
+    background: radial-gradient(circle at 50% 20%, #1a1a2e 0%, #000000 100%);
+    color: var(--text-main);
+    font-family: 'Share Tech Mono', monospace;
+}
+
+/* Header */
+.game-header h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+    margin: 2rem 0;
+    text-align: center;
+}
+
+/* Gameplay Area */
+/* Layout Wrapper */
+.content-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+    max-width: none;
+    /* Remove constraint to fill laptop screen */
+    padding: 0 2rem;
+    /* Add side padding for breathing room */
+}
+
+/* Gameplay Area */
+.game-board {
+    flex: 3;
+    /* Takes even more space on wide screens */
+    /* Takes more space */
+    padding: 2rem;
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5) inset;
+    width: 100%;
+    /* Ensure it fills flex item */
+}
+
+.bulb-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    /* Removed max-width as container controls it */
+}
+
+/* Logic Manual / Instructions */
+.manual-container {
+    flex: 1;
+    /* Side panel */
+    min-width: 350px;
+    /* Prevent too skinny */
+    max-width: 500px;
+    background: var(--glass-bg);
+    border: 1px solid var(--neon-blue);
+    border-radius: 10px;
+    padding: 2px;
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+    height: fit-content;
+    /* Don't stretch if content is short (though it is long) */
+    position: sticky;
+    /* Optional: keeps it in view */
+    top: 20px;
+}
+
+.manual-content {
+    padding: 2rem;
+    background: rgba(10, 10, 15, 0.95);
+    border-radius: 8px;
+    text-align: left;
+}
+
+.manual-content h2,
+.manual-content h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--neon-blue);
+    margin-top: 1.5rem;
+    border-bottom: 1px solid rgba(0, 243, 255, 0.3);
+    padding-bottom: 0.5rem;
+}
+
+.manual-content p,
+.manual-content li {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #b0b0cc;
+}
+
+.manual-content strong {
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Controls Table */
+.controls-table {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 1.5rem 0;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    padding: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.row.header {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--neon-pink);
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    border-bottom: 2px solid var(--neon-pink);
+}
+
+.pro-tip {
+    margin-top: 2rem;
+    padding: 1rem;
+    border-left: 4px solid var(--neon-pink);
+    background: rgba(255, 0, 255, 0.1);
+    font-style: italic;
+}
+
+/* Responsive */
+/* Responsive */
+/* Responsive */
+
+/* Medium Screens (Small Laptops / Large Tablets Landscape) */
+@media (max-width: 1200px) {
+    .content-wrapper {
+        gap: 1.5rem;
+    }
+
+    .manual-container {
+        min-width: 300px;
+    }
+}
+
+/* Tablet Stacked Mode (iPad Pro, iPad Mini, Portrait Tablets) */
+@media (max-width: 1024px) {
+    .app-container {
+        padding: 0;
+        /* Align to edges */
+        justify-content: flex-start;
+        /* Start from top */
+    }
+
+    .content-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        /* Remove gap between stacked items */
+        width: 100%;
+        padding: 0;
+        /* OVEERIDE: Remove desktop side padding for full tablet width */
+    }
+
+    .manual-container {
+        max-width: 100%;
+        width: 100%;
+        border-radius: 0;
+        /* Remove corners for full width feel */
+        border-left: none;
+        border-right: none;
+        position: static;
+        margin-top: 0;
+        box-shadow: none;
+        /* Flatten */
+        border-bottom: 1px solid var(--neon-blue);
+    }
+
+    .manual-content {
+        border-radius: 0;
+    }
+
+    .game-board {
+        flex: unset;
+        width: 100%;
+        max-width: 100%;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        margin-bottom: 0;
+        min-height: 50vh;
+        /* Ensure substantial height */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .bulb-wrapper {
+        width: 100%;
+        padding: 2rem 0;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .app-container {
+        padding: 10px;
+        /* RESTORE: Give small screens breathing room again */
+    }
+
+    .game-header h1 {
+        font-size: 2rem;
+    }
+
+    .bulb-wrapper {
+        gap: 10px;
+    }
+
+    .row {
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
+
+    .row span:first-child {
+        color: var(--neon-blue);
+    }
+}
+
+/* --- Game State Animations --- */
+
+/* Victory Dance - Warm, Rhythmic */
+@keyframes victoryPulse {
+    0% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 10px gold) hue-rotate(0deg);
+    }
+
+    50% {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 30px orange) hue-rotate(90deg);
+    }
+
+    100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 10px gold) hue-rotate(0deg);
+    }
+}
+
+.victory-dance {
+    animation: victoryPulse 0.5s infinite;
+}
+
+/* Stagger animations for wave effect */
+.victory-dance:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.victory-dance:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.victory-dance:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.victory-dance:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+.victory-dance:nth-child(5) {
+    animation-delay: 0.4s;
+}
+
+.victory-dance:nth-child(6) {
+    animation-delay: 0.5s;
+}
+
+.victory-dance:nth-child(7) {
+    animation-delay: 0.6s;
+}
+
+/* The Haunting - Cold, Broken, Glitchy */
+@keyframes hauntingFlicker {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+
+    10% {
+        opacity: 0.8;
+        transform: translate(-2px, 2px);
+    }
+
+    20% {
+        opacity: 1;
+        transform: translate(2px, -2px);
+    }
+
+    30% {
+        opacity: 0.1;
+    }
+
+    40% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.9;
+        filter: grayscale(1);
+    }
+
+    100% {
+        opacity: 1;
+        filter: grayscale(0);
+    }
+}
+
+.haunting {
+    animation: hauntingFlicker 0.2s infinite;
+    filter: sepia(1) hue-rotate(180deg) saturate(3);
+    /* Cold eerie blue/red */
+}
+
+/* Retry Button */
+.retry-container {
+    margin-top: 2rem;
+    height: 60px;
+    /* Reserve space */
+}
+
+.retry-btn {
+    background: transparent;
+    border: 2px solid var(--neon-pink);
+    color: var(--neon-pink);
+    padding: 1rem 2rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 0 10px var(--neon-pink);
+    transition: all 0.3s ease;
+    animation: btnPulse 2s infinite;
+}
+
+.retry-btn:hover {
+    background: var(--neon-pink);
+    color: black;
+    box-shadow: 0 0 30px var(--neon-pink);
+}
+
+@keyframes btnPulse {
+    0% {
+        box-shadow: 0 0 10px var(--neon-pink);
+    }
+
+    50% {
+        box-shadow: 0 0 20px var(--neon-pink);
+    }
+
+    100% {
+        box-shadow: 0 0 10px var(--neon-pink);
+    }
+}
+
+/* Game Status Text */
+.game-status {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    height: 2rem;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.status-won {
+    color: gold;
+    text-shadow: 0 0 10px orange;
+}
+
+.status-lost {
+    color: red;
+    text-shadow: 0 0 10px darkred;
+}
+
+/* --- UX Improvements --- */
+
+/* Hint Animation */
+/* Hint Animation - Premium Glow */
+@keyframes hintPulse {
+    0% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 0 rgba(80, 197, 255, 0)) brightness(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+        filter: drop-shadow(0 0 15px var(--neon-blue)) brightness(1.3) hue-rotate(-10deg);
+    }
+
+    100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 0 rgba(80, 197, 255, 0)) brightness(1);
+    }
+}
+
+.hint-flash {
+    animation: hintPulse 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    z-index: 20;
+}
+
+/* Progress Tracker */
+.progress-container {
+    margin-bottom: 1.5rem;
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--neon-blue);
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+
+.progress-text span {
+    color: white;
+    font-weight: bold;
+}
+
+/* Hint Button */
+.hint-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    font-family: 'Share Tech Mono', monospace;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.hint-btn:hover {
+    border-color: var(--neon-blue);
+    color: var(--neon-blue);
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+}
+
+.hint-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    border-color: transparent;
+}

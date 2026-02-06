@@ -1,0 +1,81 @@
+.light-bulb {
+    position: relative;
+    width: 150px;
+    height: 150px;
+
+    /* Explicit Background Properties - No Shorthand */
+    background-image: url(../assets/lightbulb.png);
+    background-repeat: no-repeat;
+    background-position: 100% 0;
+    /* Right half (OFF state) */
+    background-size: 200% 100%;
+    /* Force 2x width to start zoom level */
+
+    cursor: pointer;
+    z-index: 10;
+    transition: transform 0.1s ease-out;
+    flex-shrink: 0;
+    /* Prevent squashing in flex container */
+
+    /* Button Reset */
+    border: none;
+    outline: none;
+    padding: 0;
+    background-color: transparent;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Accessibility: Only show glow for keyboard users, hide default outlines for mouse */
+.light-bulb:focus {
+    outline: none;
+}
+
+.light-bulb:focus-visible {
+    outline: none;
+    box-shadow: 0 0 15px 5px var(--neon-blue);
+    border-radius: 50%;
+}
+
+.light-bulb:active {
+    transform: scale(0.95);
+}
+
+.light-bulb:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* Explicit Background Properties for Overlay */
+    background-image: url(../assets/lightbulb.png);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    /* Left half (ON state) */
+    background-size: 200% 100%;
+
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+    pointer-events: none;
+}
+
+.light-bulb.on:after {
+    opacity: 1;
+}
+
+/* Responsive Scaling */
+@media (max-width: 768px) {
+    .light-bulb {
+        width: 100px;
+        height: 100px;
+        /* background-size remains 200% 100% */
+    }
+}
+
+@media (max-width: 480px) {
+    .light-bulb {
+        width: 80px;
+        height: 80px;
+    }
+}
